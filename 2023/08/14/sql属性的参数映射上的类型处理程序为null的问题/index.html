@@ -16,21 +16,21 @@
   <meta name="author" content="houyfan">
   <meta name="keywords" content="">
   
-    <meta name="description" content="Type handler was null on parameter mapping for property ‘specificationTypes’ 出错是因为传入的参数类型为list,而查询条件为单个元素直接写入单个元素就会造成类型不匹配。 例如：我有一个example，还有一个list，通过ArrayList向mapper中传值    select name from table    w">
+    <meta name="description" content="Type handler was null on parameter mapping for property ‘specificationTypes’出错是因为传入的参数类型为list,而查询条件为单个元素直接写入单个元素就会造成类型不匹配。 例如：我有一个example，还有一个list，通过ArrayList向mapper中传值 12345678&lt;select id&#x3D;&quot;get">
 <meta property="og:type" content="article">
-<meta property="og:title" content="sql属性的参数映射上的类型处理程序为null的问题">
+<meta property="og:title" content="解决sql属性的参数映射上的类型处理程序为null的问题">
 <meta property="og:url" content="http://example.com/2023/08/14/sql%E5%B1%9E%E6%80%A7%E7%9A%84%E5%8F%82%E6%95%B0%E6%98%A0%E5%B0%84%E4%B8%8A%E7%9A%84%E7%B1%BB%E5%9E%8B%E5%A4%84%E7%90%86%E7%A8%8B%E5%BA%8F%E4%B8%BAnull%E7%9A%84%E9%97%AE%E9%A2%98/index.html">
 <meta property="og:site_name" content="houyfan的博客">
-<meta property="og:description" content="Type handler was null on parameter mapping for property ‘specificationTypes’ 出错是因为传入的参数类型为list,而查询条件为单个元素直接写入单个元素就会造成类型不匹配。 例如：我有一个example，还有一个list，通过ArrayList向mapper中传值    select name from table    w">
+<meta property="og:description" content="Type handler was null on parameter mapping for property ‘specificationTypes’出错是因为传入的参数类型为list,而查询条件为单个元素直接写入单个元素就会造成类型不匹配。 例如：我有一个example，还有一个list，通过ArrayList向mapper中传值 12345678&lt;select id&#x3D;&quot;get">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2023-08-14T01:46:10.000Z">
-<meta property="article:modified_time" content="2023-08-14T02:07:18.387Z">
+<meta property="article:modified_time" content="2023-08-14T02:20:12.598Z">
 <meta property="article:author" content="houyfan">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>sql属性的参数映射上的类型处理程序为null的问题 - houyfan的博客</title>
+  <title>解决sql属性的参数映射上的类型处理程序为null的问题 - houyfan的博客</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -223,7 +223,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="sql属性的参数映射上的类型处理程序为null的问题"></span>
+            <span id="subtitle" data-typed-text="解决sql属性的参数映射上的类型处理程序为null的问题"></span>
           
         </div>
 
@@ -246,7 +246,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          777 字
+          1.1k 字
         
       </span>
     
@@ -257,7 +257,7 @@
         
         
         
-          7 分钟
+          9 分钟
         
       </span>
     
@@ -294,27 +294,16 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">sql属性的参数映射上的类型处理程序为null的问题</h1>
+            <h1 id="seo-header">解决sql属性的参数映射上的类型处理程序为null的问题</h1>
             
             
               <div class="markdown-body">
                 
-                <p>Type handler was null on parameter mapping for property ‘specificationTypes’</p>
-<p>出错是因为传入的参数类型为list,而查询条件为单个元素直接写入单个元素就会造成类型不匹配。</p>
+                <h2 id="Type-handler-was-null-on-parameter-mapping-for-property-‘specificationTypes’"><a href="#Type-handler-was-null-on-parameter-mapping-for-property-‘specificationTypes’" class="headerlink" title="Type handler was null on parameter mapping for property ‘specificationTypes’"></a>Type handler was null on parameter mapping for property ‘specificationTypes’</h2><p>出错是因为传入的参数类型为list,而查询条件为单个元素直接写入单个元素就会造成类型不匹配。</p>
 <p>例如：<br>我有一个example，还有一个list，通过ArrayList向mapper中传值</p>
-<select id="getMainInfo" parameterType="example" resultType="java.util.List">
-  select name from table 
-  where 
-    name in
-  <foreach collection="list" item="param"  open="(" close=")" separator=",">  
-    #{param.name}
-//这里直接用#{name}，就会报错
-  </foreach>   
-</select>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">select</span> <span class="hljs-attr">id</span>=<span class="hljs-string">&quot;getMainInfo&quot;</span> <span class="hljs-attr">parameterType</span>=<span class="hljs-string">&quot;example&quot;</span> <span class="hljs-attr">resultType</span>=<span class="hljs-string">&quot;java.util.List&quot;</span>&gt;</span><br>  select name from table <br>  where <br>	name in<br>  <span class="hljs-tag">&lt;<span class="hljs-name">foreach</span> <span class="hljs-attr">collection</span>=<span class="hljs-string">&quot;list&quot;</span> <span class="hljs-attr">item</span>=<span class="hljs-string">&quot;param&quot;</span>  <span class="hljs-attr">open</span>=<span class="hljs-string">&quot;(&quot;</span> <span class="hljs-attr">close</span>=<span class="hljs-string">&quot;)&quot;</span> <span class="hljs-attr">separator</span>=<span class="hljs-string">&quot;,&quot;</span>&gt;</span>  <br>    #&#123;param.name&#125;//这里直接用#&#123;name&#125;，就会报错<br>  <span class="hljs-tag">&lt;/<span class="hljs-name">foreach</span>&gt;</span>   <br><span class="hljs-tag">&lt;/<span class="hljs-name">select</span>&gt;</span><br></code></pre></td></tr></table></figure>
 
-
-
-<p>&lt; foreach&gt;标签的使用：<br>foreach的主要用在构建in条件中，它可以在SQL语句中进行迭代一个集合。foreach元素的属性主要有item，index，collection，open，separator，close。item表示集合中每一个元素进行迭代时的别名，index指定一个名字，用于表示在迭代过程中，每次迭代到的位置，open表示该语句以什么开始，separator表示在每次进行迭代之间以什么符号作为分隔符，close表示以什么结束，在使用foreach的时候最关键的也是最容易出错的就是collection属性，该属性是必须指定的，但是在不同情况下，该属性的值是不一样的，主要有一下3种情况：</p>
+<h2 id="lt-foreach-gt-标签的使用："><a href="#lt-foreach-gt-标签的使用：" class="headerlink" title="&lt; foreach&gt;标签的使用："></a>&lt; foreach&gt;标签的使用：</h2><p>foreach的主要用在构建in条件中，它可以在SQL语句中进行迭代一个集合。foreach元素的属性主要有item，index，collection，open，separator，close。item表示集合中每一个元素进行迭代时的别名，index指定一个名字，用于表示在迭代过程中，每次迭代到的位置，open表示该语句以什么开始，separator表示在每次进行迭代之间以什么符号作为分隔符，close表示以什么结束，在使用foreach的时候最关键的也是最容易出错的就是collection属性，该属性是必须指定的，但是在不同情况下，该属性的值是不一样的，主要有一下3种情况：</p>
 <ol>
 <li>如果传入的是单参数且参数类型是一个List的时候，collection属性值为list .</li>
 <li>如果传入的是单参数且参数类型是一个array数组的时候，collection的属性值为array .</li>
@@ -337,7 +326,7 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>sql属性的参数映射上的类型处理程序为null的问题</div>
+      <div>解决sql属性的参数映射上的类型处理程序为null的问题</div>
       <div>http://example.com/2023/08/14/sql属性的参数映射上的类型处理程序为null的问题/</div>
     </div>
     <div class="license-meta">
